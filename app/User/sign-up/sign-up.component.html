@@ -1,35 +1,36 @@
 <h1 align="center"> Register Here </h1>
 
-<div>
-    <p> First Name</p>
-    <input type="text" placeholder="Enter First Name" [(ngModel)]="fname">
-</div>
-<div *ngIf="fname.length > 10 ">Length excedded</div>
-<div>
-    <p> Last Name</p>
-    <input type="text" placeholder="Enter Last Name" [(ngModel)]="lname">
-</div>
+
+    <div>
+        <p> First Name</p>
+        <input type="text" placeholder="Enter First Name" [(ngModel)]="user.fname">
+         <p *ngIf="fname.length > 10 ">Length excedded</p> 
+    </div>
+    <div>
+        <p> Last Name</p>
+        <input type="text" placeholder="Enter Last Name" [(ngModel)]="lname">
+    </div>
 
 
-<div>
-    <p> Username</p>
-    <input type="text" placeholder="Enter Username" [(ngModel)]="username">
-</div>
-<div>
-    <p>Email ID</p>
-    <input type="text" placeholder="Enter Email ID" [(ngModel)]="emailaddr">
-</div>
-<div>
-    <p>Phone</p>
-    <input type="text" placeholder="Enter Phone Number" [(ngModel)]="phone">
-</div>
-<div>
-    <p> Password </p>
-    <input type="text" placeholder="Enter Password" [(ngModel)]="password">
-</div>
+    <div>
+        <p> Username</p>
+        <input type="text" placeholder="Enter Username" [(ngModel)]="username">
+    </div>
+    <div>
+        <p>Email ID</p>
+        <input type="text" placeholder="Enter Email ID" [(ngModel)]="emailaddr">
+    </div>
+    <div>
+        <p>Phone</p>
+        <input type="text" placeholder="Enter Phone Number" [(ngModel)]="phone">
+    </div>
+    <div>
+        <p> Password </p>
+        <input type="text" placeholder="Enter Password" [(ngModel)]="password">
+    </div>
 
 
-<button [disabled]=validate() (click)="register()">Sign Up</button>
+    <button [disabled]=validate() (click)="register()">Sign Up</button>
 
 {{msg}}
 

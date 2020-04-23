@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("Rushil Shah");
+    //console.log("Rushil Shah");
     this.currentUrl = this.route.url;
     this.arr = this.currentUrl.split("/",5);
     if(this.arr[2] == "products"){
