@@ -12,7 +12,7 @@ export class ProductDetailsComponent implements OnInit {
 
   product: Product;
   productId: number;
-  currentUrl: String;
+  curUrl: String;
   arr: String[];
   constructor(private route: Router, private prodService: ProductService) {
 
@@ -20,8 +20,9 @@ export class ProductDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.currentUrl = this.route.url;
-    this.arr = this.currentUrl.split("/",5);
+    this.curUrl = this.route.url;
+    console.log(this.curUrl);
+    this.arr = this.curUrl.split("/",5);
     this.productId = Number(this.arr[3]);
     console.log(this.productId);
 

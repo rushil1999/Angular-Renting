@@ -12,14 +12,19 @@ export class ProductListComponent implements OnInit {
 
   category: String;
   products: Product[];
-  url: String;
+  cUrl: string;
+  arr: String[];
 
   constructor( private prodService: ProductService, private router: Router) { 
     
   }
 
   ngOnInit(): void {
-    this.category = "all";
+    console.log("Prodcut List");
+    console.log(this.router.url);
+    console.log(this.router.url.split("/",5));
+    this.arr = this.router.url.split("/",5);
+    this.category = this.arr[3];
     this.getProductList();
   }
 
@@ -31,8 +36,8 @@ export class ProductListComponent implements OnInit {
 
   productView(id: number){
     
-    this.url = "/dashboard/product/" + String(id);
-    this.router.navigate([this.url]);
+    this.cUrl = "/dashboard/product/" + String(id);
+    this.router.navigate([this.cUrl]);
   }
 
 }

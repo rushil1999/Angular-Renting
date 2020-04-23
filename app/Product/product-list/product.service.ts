@@ -7,8 +7,7 @@ import { Product }from '../product';
 })
 export class ProductService {
 
-
-  url_list = "http://localhost:8080/products";
+  url_list: string;
   url_details : string;
   products: Product[];
 
@@ -17,6 +16,8 @@ export class ProductService {
   }
 
   getProductList(category: String){
+    this.url_list = "http://localhost:8080/products";
+    this.url_list = this.url_list + "/" + category;
     return this.http.get<Product[]>(this.url_list);
   }
 

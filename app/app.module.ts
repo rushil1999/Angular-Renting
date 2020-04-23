@@ -37,7 +37,7 @@ import { ProductDetailsComponent } from './Product/product-details/product-detai
       { path: '', component: AppComponent},
       { path: 'signUp', component: SignUpComponent }, 
       { path: 'login', component: LoginComponent }, 
-      { path: 'dashboard/products', component: DashboardComponent },
+      { path: 'dashboard/products/:category', component: DashboardComponent },
       { path: 'dashboard/product/:id', component: DashboardComponent }
     ])
   ],
