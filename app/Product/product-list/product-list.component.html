@@ -1,0 +1,8 @@
+<p>Products Page</p>
+
+<div *ngFor="let product of products">
+    <nav>
+        <a routerlink= "dashboard/product/product.id" routerLinkActive="active">{{ product.name }}</a>
+        <button (click)="productView(product.id)">View</button>
+    </nav>
+</div>
