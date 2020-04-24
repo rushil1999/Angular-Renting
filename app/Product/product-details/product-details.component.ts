@@ -25,9 +25,11 @@ export class ProductDetailsComponent implements OnInit {
     this.arr = this.curUrl.split("/",5);
     this.productId = Number(this.arr[3]);
     console.log(this.productId);
+    this.getProductDetails();
+  }
 
+  getProductDetails(): void{
     this.prodService.getProductDetails(this.productId).subscribe(data => {this.product = data});
-
   }
 
 }

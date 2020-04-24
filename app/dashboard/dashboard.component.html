@@ -1,7 +1,14 @@
 <h1>RentForcement Dashboard</h1>
 <container-element [ngSwitch]="selector">
-    <app-product-list *ngSwitchCase="1"></app-product-list>
+    <app-product-list [category]="category" *ngSwitchCase="1"></app-product-list>
     <app-product-details *ngSwitchCase="2"></app-product-details>
 </container-element>
-
-
+<br>
+<nav>
+    <a [routerLink] = "['/dashboard/products/', 'Clothes']">Clothes</a><br>
+    <a [routerLink] = "['/dashboard/products/', 'Electronics']">Electronics</a><br> 
+    <a [routerLink] = "['/dashboard/products/', 'Household']">Household</a><br>
+    <a [routerLink] = "['/dashboard/products/', 'Games']">Games</a><br>
+    <a [routerLink] = "['/dashboard/products/', 'Industrial']">Industrial</a><br>
+    <a [routerLink] = "['/dashboard/products/', 'Other']">Other</a><br>
+</nav>

@@ -35,12 +35,13 @@ import { ProductDetailsComponent } from './Product/product-details/product-detai
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: AppComponent},
-      { path: 'signUp', component: SignUpComponent }, 
+      { path: 'signUp', component: SignUpComponent}, 
       { path: 'login', component: LoginComponent }, 
-      { path: 'dashboard/products/:category', component: DashboardComponent },
-      { path: 'dashboard/product/:id', component: DashboardComponent }
-    ])
-  ],
+      { path: 'dashboard/products/:category', component: DashboardComponent, runGuardsAndResolvers: 'always'},
+      { path: 'dashboard/product/:id', component: DashboardComponent, runGuardsAndResolvers: 'always'}
+    ],
+    { onSameUrlNavigation: 'reload' },
+    )],
   bootstrap: [ AppComponent ], 
   
   providers : [
