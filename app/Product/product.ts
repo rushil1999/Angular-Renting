@@ -9,10 +9,9 @@ export class Product {
     available: boolean;
 
     constructor(){
-
-    }
-    getDoa(): string{
-        return this.doa;
+        
     }
 
+    
+    
 }

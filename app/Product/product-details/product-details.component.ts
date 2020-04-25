@@ -21,13 +21,13 @@ export class ProductDetailsComponent implements OnInit {
 
   availabilityMessage: string;
 
-  test: string
+  test: string;
 
 
   constructor(private route: Router, 
     private prodService: ProductService,
      ) {
-       this.product = new Product();
+      this.product = new Product();
       //  this.testProduct = new Product();
       //  this.testProduct.age = 17;
       //  console.log(this.testProduct.age);
@@ -42,8 +42,8 @@ export class ProductDetailsComponent implements OnInit {
     console.log("Initialized ng function");
     this.getProductDetails(this.getProductIdFromUrl());
     
-    //this.checkProductAvailability();
-    //this.checkProductExpiry();
+    // this.checkProductAvailability();
+    // this.checkProductExpiry();
   }
 
   getProductIdFromUrl(): number{
@@ -56,10 +56,36 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductDetails(prodId: number): void{
-    this.prodService.getProductDetails(prodId).subscribe((data: Product) => {this.product = data; console.log(typeof(data)); console.log(data)});
-    console.log("Data " + this.product.name);
+
+
+    // this.prodService.getProductDetails(prodId).subscribe((data: Product) => this.product = {
+    //   id: data['id'],
+    //   name: data['name'],
+    //   age: data['age'],
+    //   desc: data['desc'],
+    //   category: data['category'],
+    //   doa: data['doa'],
+    //   duration: data['duration'],
+    //   available: data['available']
+    // });
+
+    
+    this.prodService.getProductDetails(prodId).subscribe((data: Product) => { this.setProduct(data) });
+      // this.product = data;
+      // console.log(data['id']);
+      // console.log(typeof(data['doa']));
+      // console.log(this.product);
+      // this.test = data['doa']});
+
+      //console.log("Data is " + this.product.id);
+      
   }
 
+
+  setProduct(data){
+    this.product = data;
+    console.log("Data is " + this.product.id);
+  }
 
   getCurrentDate(): Array<number>{
     let today: String = formatDate(new Date(),'dd-MM-yyyy','en');
