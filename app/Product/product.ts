@@ -1,10 +1,18 @@
 export class Product {
     id: number;
-    name: String;
+    name: string;
     age: number;
-    desc: String;
-    category: String;
-    doa: String;
+    desc: string;
+    category: string;
+    doa: string;
     duration: number;
+    available: boolean;
+
+    constructor(){
+
+    }
+    getDoa(): string{
+        return this.doa;
+    }
 
 }

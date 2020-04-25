@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ProductService } from './product.service';
+import { ProductService } from '../product.service';
 import { Product } from '../product';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log("Product List");
-    console.log(this.router.url);
+    //console.log(this.router.url);
     console.log(this.router.url.split("/",5));
     this.arr = this.router.url.split("/",5);
     this.category = this.arr[3];

@@ -40,14 +40,28 @@ export class SignUpComponent implements OnInit {
 
   register(){
     console.log("Registering");
-    this.user = new User(this.username, this.fname,this.lname, this.emailaddr, this.phone, this.password);
-    this.service.addUser(this.user).subscribe( data => {console.log(data); this.msg = data});
+    //this.user = new User(this.username, this.fname,this.lname, this.emailaddr, this.phone, this.password);
+    this.service.addUser(this.user).subscribe( data => {
+      console.log(data); 
+      this.msg = data;
+    });
 
   }
 
   validate(): boolean{
-    return this.service.validate(new User(this.username, this.fname,
-      this.lname, this.emailaddr, this.phone, this.password));
+   // return this.service.validate(new User(this.username, this.fname,
+    //  this.lname, this.emailaddr, this.phone, this.password));
+    return true;
+  }
+
+  clearAllFields(): void{
+    this.fname = "";
+    this.lname = "";
+    this.username = "";
+    this.emailaddr = "";
+    this.phone = "";
+    this.password = "";
+    this.msg = "";
   }
 
   

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product }from '../product';
+import { Product }from './product';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,7 @@ export class ProductService {
     this.url_details = "http://localhost:8080/product";
     this.url_details = this.url_details + "/" + id;
     console.log(this.url_details);
+    //this.http.get<Product>(this.url_details).subscribe((data) => {console.log(data) })
     return this.http.get<Product>(this.url_details);
   }
 }

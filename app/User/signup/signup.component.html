@@ -1,0 +1,137 @@
+<link rel="stylesheet" type="text/css" href="signup.component.css">
+    
+<div class="loginbox">
+    <h1 align="center">Renting made easy @RentForcement</h1>
+
+    <div class="f_left">
+        First Name
+        <div class="validate-message" *ngIf="flag[0]==0">
+            <p>Please fill in this field!</p>
+        </div>
+        <div *ngIf="flag[0]==1">
+            <br>
+        </div>
+        <input 
+            type="text" 
+            name="fname" 
+            id="fname" 
+            placeholder="Enter first name"
+            [(ngModel)]="usr.fname">
+    </div>
+
+    <div class="l_right">
+        Last Name
+        <div class="validate-message" *ngIf="flag[1]==0">
+            <p>Please fill in this field!</p>
+        </div>
+        <div *ngIf="flag[1]==1">
+            <br>
+        </div>
+        <input 
+            type="text" 
+            name="lname" 
+            id="lname" 
+            placeholder="Enter last name"
+            [(ngModel)]="usr.lname">
+    </div>
+
+    <div class="l_uname">
+        Username
+        <div class="validate-message" *ngIf="flag[2]==0">
+            <p>Please fill in this field!</p>
+        </div>
+        <div *ngIf="flag[2]==1">
+            <br>
+        </div>
+        <input 
+            type="text"     
+            name="username" 
+            id="username" 
+            placeholder="Enter username"
+            [(ngModel)]="usr.username">
+    </div>
+
+    <div class="r_email">
+        Email Address
+        <div class="validate-message" *ngIf="flag[3]==0">
+            <p>Please fill in this field!</p>
+        </div>
+        <div *ngIf="flag[3]==1">
+            <br>
+        </div>
+        <input 
+            type="text" 
+            name="email" 
+            id="email" 
+            placeholder="Enter email address"
+            [(ngModel)]="usr.emailaddr">
+    </div>
+
+    <div class="l_phone">
+        Contact Number
+        <div class="validate-message" *ngIf="flag[4]==0">
+            <p>Please fill in this field!</p>
+        </div>
+        <div *ngIf="flag[4]==1">
+            <br>
+        </div>
+        <input 
+            type="text" 
+            name="phone" 
+            id="phone" 
+            placeholder="Enter contact number"
+            [(ngModel)]="usr.phone">
+    </div>
+
+    <div class="password">
+    Password
+    <div class="validate-message" *ngIf="flag[5]==0">
+        <p>Please fill in this field!</p>
+    </div>
+    <div *ngIf="flag[5]==1">
+        <br>
+    </div>
+    <input 
+        type="password" 
+        name="password" 
+        id="password" 
+        placeholder="Enter password"
+        [(ngModel)]="usr.password">
+    </div>
+
+    <input 
+        type="submit" 
+        name="signup" 
+        value="Sign Up"  
+        (click)="saveUserDetails($event, usr)">
+
+</div>
+
+<div class="animation-area">
+    <ul class="box-area">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<router-outlet></router-outlet>
+
+
+
+
+    <!-- Username or email address
+    <div class="validate-message" *ngIf="flag1==1">
+        <p>Please fill in this field!</p>
+    </div>
+    <div *ngIf="flag1==0">
+        <br>
+    </div>
+	<input 
+		type="text" 
+		name="username"
+        placeholder="Enter username or email address"
+        [(ngModel)]="userLogin.cred1">
+    <br><br> -->

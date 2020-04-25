@@ -9,10 +9,12 @@ import { SignUpComponent } from './User/sign-up/sign-up.component';
 import { LoginComponent } from './User/login/login.component';
 import { ProductListComponent } from './Product/product-list/product-list.component';
 import { UserService } from './User/user.service';
-import { ProductService } from './Product/product-list/product.service';
+import { ProductService } from './Product/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailsComponent } from './Product/product-details/product-details.component';
+import { UserFormComponent } from './User/user-form/user-form.component';
+import { SignupComponent } from './User/signup/signup.component';
 
 
 
@@ -23,7 +25,9 @@ import { ProductDetailsComponent } from './Product/product-details/product-detai
     LoginComponent, 
     ProductListComponent, 
     DashboardComponent, 
-    ProductDetailsComponent
+    ProductDetailsComponent, 
+    UserFormComponent, 
+    SignupComponent
     
 
   ],
@@ -35,10 +39,11 @@ import { ProductDetailsComponent } from './Product/product-details/product-detai
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: AppComponent},
-      { path: 'signUp', component: SignUpComponent}, 
+      { path: 'signUp', component: SignupComponent}, 
       { path: 'login', component: LoginComponent }, 
       { path: 'dashboard/products/:category', component: DashboardComponent, runGuardsAndResolvers: 'always'},
-      { path: 'dashboard/product/:id', component: DashboardComponent, runGuardsAndResolvers: 'always'}
+      { path: 'dashboard/product/:id', component: DashboardComponent, runGuardsAndResolvers: 'always'},
+      { path: 'user', component: UserFormComponent}
     ],
     { onSameUrlNavigation: 'reload' },
     )],
