@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { formatDate } from '@angular/common';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 
@@ -42,8 +43,7 @@ export class ProductDetailsComponent implements OnInit {
     console.log("Initialized ng function");
     this.getProductDetails(this.getProductIdFromUrl());
     
-    // this.checkProductAvailability();
-    // this.checkProductExpiry();
+    
   }
 
   getProductIdFromUrl(): number{
@@ -85,9 +85,12 @@ export class ProductDetailsComponent implements OnInit {
   setProduct(data){
     this.product = data;
     console.log("Data is " + this.product.id);
+    this.checkProductAvailability();
+    this.checkProductExpiry();
   }
 
   getCurrentDate(): Array<number>{
+
     let today: String = formatDate(new Date(),'dd-MM-yyyy','en');
     let arr: Array<string> = today.split('-',3);
     let currentDate: Array<number>;
@@ -106,10 +109,10 @@ export class ProductDetailsComponent implements OnInit {
   
 
   checkProductExpiry(): boolean{
+    let doa: string = this.product.doa;
     let cDate = this.getCurrentDate();
-    console.log("Product Date of Availability");
-    console.log(this.product.doa);
-    let pDate = this.getProductDate(this.product.doa);
+    console.log("Checking for product expiry " + this.product.doa);
+    let pDate = this.getProductDate(doa);
 
     let temp: boolean = false;
 
@@ -134,8 +137,8 @@ export class ProductDetailsComponent implements OnInit {
 
   }
   checkProductAvailability(): void{
-    if(!this.product.available){
-      this.availabilityMessage = "Sorry the product is not available!!!!";
+    if(this.product.available){
+      this.availabilityMessage = "Product is available!!!!";
     }
   }
 
