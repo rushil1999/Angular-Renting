@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     console.log("Change Detected " + changes.category.currentValue);
+    this.arr = this.router.url.split("/",5);
+    this.category = this.arr[3];
     this.getProductList();
 
   }

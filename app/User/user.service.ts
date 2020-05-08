@@ -18,7 +18,7 @@ export class UserService {
 
   addUser(user: User) : Observable<any>{
     console.log("At your service" );
-    return this.http.post(this.url, user)
+    return this.http.post(this.url, user);
     
   }
 

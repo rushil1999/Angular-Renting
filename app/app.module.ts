@@ -15,6 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailsComponent } from './Product/product-details/product-details.component';
 import { UserFormComponent } from './User/user-form/user-form.component';
 import { SignupComponent } from './User/signup/signup.component';
+import { ImageHandlerComponent } from './image-handler/image-handler.component';
+import { ProductAdditionComponent } from './Product/product-addition/product-addition.component';
 
 
 
@@ -27,7 +29,7 @@ import { SignupComponent } from './User/signup/signup.component';
     DashboardComponent, 
     ProductDetailsComponent, 
     UserFormComponent, 
-    SignupComponent
+    SignupComponent, ImageHandlerComponent, ProductAdditionComponent
     
 
   ],
@@ -43,7 +45,9 @@ import { SignupComponent } from './User/signup/signup.component';
       { path: 'login', component: LoginComponent }, 
       { path: 'dashboard/products/:category', component: DashboardComponent, runGuardsAndResolvers: 'always'},
       { path: 'dashboard/product/:id', component: DashboardComponent, runGuardsAndResolvers: 'always'},
-      { path: 'user', component: UserFormComponent}
+      { path: 'dashboard/addProduct', component: DashboardComponent, runGuardsAndResolvers: 'always'},
+      { path: 'user', component: UserFormComponent},
+      { path: 'image', component: ImageHandlerComponent } 
     ],
     { onSameUrlNavigation: 'reload' },
     )],
