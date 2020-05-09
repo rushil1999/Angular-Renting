@@ -11,36 +11,52 @@ import { ProductService } from '../product.service';
 export class ProductAdditionComponent implements OnInit {
 
   product: Product;
-  constructor( private productService : ProductService ) { }
+
+  selector: number;
+  constructor( private productService : ProductService ) { 
+    this.selector = 1;
+  }
 
   ngOnInit(): void {
+    this.selector = 1;
   }
 
-  productAdditionForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    age: new FormControl('', Validators.required),
-    desc: new FormControl('', Validators.required), 
-    category: new FormControl('', Validators.required),
-    duration: new FormControl('', Validators.required),
-    doa: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required)
-  })
-
-
-  addProduct(): void{
-    console.log(this.productAdditionForm.value);
-    this.product = this.productAdditionForm.value;
-    console.log(this.product.name);
+  getProductDetails( productAdditionForm: FormGroup ){
+    this.product = productAdditionForm.value;
+    console.log("Parent " + this.product.name);
     this.product.id=1;
-    this.productService.addProduct(this.product).subscribe(
-      data => {this.displayData(data)});
+    
+    this.selector = 2;
 
   }
-
-  displayData(data: any){
-    console.log(data);
-  }
+  
+  
 }
 
 
 
+
+// productAdditionForm = new FormGroup({
+//   name: new FormControl('', [ Validators.maxLength(20), Validators.required]),
+//   age: new FormControl('', [Validators.required]),
+//   desc: new FormControl('', [Validators.maxLength(50), Validators.required]), 
+//   category: new FormControl('', Validators.required),
+//   duration: new FormControl('', Validators.required),
+//   doa: new FormControl('', Validators.required),
+//   price: new FormControl('', Validators.required)
+// })
+
+
+// addProduct(): void{
+//   console.log(this.productAdditionForm.value);
+//   this.product = this.productAdditionForm.value;
+//   console.log(this.product.name);
+//   this.product.id=1;
+//   this.productService.addProduct(this.product).subscribe(
+//     data => {this.displayDataInConsole(data)});
+
+// }
+
+// displayDataInConsole(data: any){
+//   console.log(data);
+// }

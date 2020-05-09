@@ -17,6 +17,7 @@ import { UserFormComponent } from './User/user-form/user-form.component';
 import { SignupComponent } from './User/signup/signup.component';
 import { ImageHandlerComponent } from './image-handler/image-handler.component';
 import { ProductAdditionComponent } from './Product/product-addition/product-addition.component';
+import { ProductAdditionFormComponent } from './Product/product-addition-form/product-addition-form.component';
 
 
 
@@ -29,7 +30,7 @@ import { ProductAdditionComponent } from './Product/product-addition/product-add
     DashboardComponent, 
     ProductDetailsComponent, 
     UserFormComponent, 
-    SignupComponent, ImageHandlerComponent, ProductAdditionComponent
+    SignupComponent, ImageHandlerComponent, ProductAdditionComponent, ProductAdditionFormComponent
     
 
   ],

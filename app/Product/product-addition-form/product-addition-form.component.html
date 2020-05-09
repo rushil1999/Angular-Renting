@@ -1,23 +1,4 @@
 
-
-
-<container-element [ngSwitch] = "selector">
-    <app-product-addition-form *ngSwitchCase= "1"  (newFormEvent) = "getProductDetails($event)"></app-product-addition-form>
-
-    <app-image-handler *ngSwitchCase= "2"></app-image-handler>
-</container-element>
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
 <from [formGroup]="productAdditionForm" (ngSubmit)="addProduct()">
     <div>
         <p>Product Name</p>
@@ -58,4 +39,4 @@
 
     <br>
     <button type="submit" [disabled]="!productAdditionForm.valid" (click)=addProduct()>Proceed</button>
-</from> -->
+</from>
