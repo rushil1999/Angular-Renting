@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ImageHandlerService } from './image-handler.service';
 
 @Component({
@@ -8,19 +8,33 @@ import { ImageHandlerService } from './image-handler.service';
 })
 export class ImageHandlerComponent implements OnInit {
 
+  @Output() fileUploadEvent = new EventEmitter<File>();
+
   message: string;
   constructor(private imgService: ImageHandlerService) { }
 
   ngOnInit(): void {
+
   }
+
+  // onPicked( input: HTMLInputElement ){
+  //   console.log("File Picked");
+  //   const file = input.files[0];
+  //   if(file){
+  //     this.fileUploadEvent.emit(file);
+
+  //   }
+  //   else{
+  //     console.log("File not collected");
+  //   }
+    
+  // }
 
   onPicked( input: HTMLInputElement ){
     console.log("File Picked");
     const file = input.files[0];
     if(file){
-      this.imgService.uploadImage(file).subscribe(data => {
-        console.log(data);
-      });
+      this.imgService.uploadImage(file).subscribe();
 
     }
     else{
@@ -28,5 +42,8 @@ export class ImageHandlerComponent implements OnInit {
     }
     
   }
+
+
+  
 
 }

@@ -1,5 +1,5 @@
 <h1>RentForcement Dashboard</h1>
-<container-element [ngSwitch]="selector">
+<container-element  [ngSwitch]="selector">
     <app-product-list [category]="category" *ngSwitchCase="1"></app-product-list>
     <app-product-details *ngSwitchCase="2"></app-product-details>
     <app-product-addition *ngSwitchCase="3"></app-product-addition>

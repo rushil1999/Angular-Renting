@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventEmitter, Output } from '@angular/core';
+import { formValidator, formValidatorIsNumeric } from '../form-validators';
 
 
 @Component({
@@ -18,18 +19,20 @@ export class ProductAdditionFormComponent implements OnInit {
   constructor( private productService : ProductService ) { }
 
   ngOnInit(): void {
+    
   }
 
   productAdditionForm = new FormGroup({
     name: new FormControl('', [ Validators.maxLength(20), Validators.required]),
-    age: new FormControl('', [Validators.required]),
+    age: new FormControl('', [Validators.required, formValidatorIsNumeric]),
     desc: new FormControl('', [Validators.maxLength(50), Validators.required]), 
     category: new FormControl('', Validators.required),
-    duration: new FormControl('', Validators.required),
+    duration: new FormControl('', [Validators.required, formValidatorIsNumeric]),
     doa: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required)
+    price: new FormControl('', [Validators.required, formValidatorIsNumeric])
   })
 
+  
 
   addProduct(): void{
 

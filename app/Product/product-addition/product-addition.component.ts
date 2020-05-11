@@ -11,6 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductAdditionComponent implements OnInit {
 
   product: Product;
+  file: File
 
   selector: number;
   constructor( private productService : ProductService ) { 
@@ -27,6 +28,19 @@ export class ProductAdditionComponent implements OnInit {
     this.product.id=1;
     
     this.selector = 2;
+
+  }
+
+  getImageFile( file: File){
+    this.file = file;
+
+  }
+
+
+  uploadProductDetails(){
+
+    this.productService.addNewProduct(this.file, this.product);
+
 
   }
   

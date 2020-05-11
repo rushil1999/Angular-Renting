@@ -11,6 +11,7 @@ export class ProductService {
   url_list: string;
   url_details : string;
   url_add : string;
+  url_upload : string;
   products: Product[];
 
   constructor( private http: HttpClient ) {  
@@ -30,6 +31,20 @@ export class ProductService {
     return this.http.get<Product>(this.url_details);
   }
 
+
+
+  addNewProduct(file: File, product: Product): void{
+
+    this.addProduct(product).subscribe(data => { 
+      this.uploadImage(file, data).subscribe(data => {
+        this.displayImageUploadDataInConsole(data);
+      } )});
+
+  }
+
+  displayImageUploadDataInConsole(data: any){
+    console.log(data);
+  }
   addProduct(product: Product): Observable<any>{
     console.log("Service " + product.name);
     this.url_add = "http://localhost:8080/addProduct";
@@ -41,4 +56,20 @@ export class ProductService {
     console.log("About to fire post query on " + this.url_add);
     return this.http.post(this.url_add, product, headers);
   }
+
+
+  uploadImage(file: File, productId: number): Observable<any>{
+
+    this.url_upload = "http://localhost:8080/image/upload";
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    console.log("Into Image Service");
+
+    const headers = {
+      headers : new HttpHeaders({
+        "productId": String(productId)
+      })
+    } 
+    return this.http.post(this.url_upload, formData);
+   }
 }

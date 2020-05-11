@@ -4,11 +4,11 @@
 <container-element [ngSwitch] = "selector">
     <app-product-addition-form *ngSwitchCase= "1"  (newFormEvent) = "getProductDetails($event)"></app-product-addition-form>
 
-    <app-image-handler *ngSwitchCase= "2"></app-image-handler>
+    <app-image-handler *ngSwitchCase= "2"  (file) = "getImageFile($event)" ></app-image-handler>
 </container-element>
 
 
-
+<button (click) = "uploadProductDetails()">Commit</button>
 
 
 

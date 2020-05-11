@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { Injectable, Output } from '@angular/core';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageHandlerService {
+
 
   uploadUrl: string = "http://localhost:8080/image/upload";
 
@@ -17,7 +18,14 @@ export class ImageHandlerService {
     const formData: FormData = new FormData();
     formData.append('file', file);
     console.log("Into Service");
-    return this.http.post(this.uploadUrl, formData);
+
+    const headers = {
+      headers : new HttpHeaders({
+        "productId": String(10)
+      })
+    } 
+    
+    return this.http.post(this.uploadUrl, formData, headers);
    }
    
    
