@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { EventEmitter, Output } from '@angular/core';
+import { EventEmitter, Output, Input } from '@angular/core';
 import { formValidator, formValidatorIsNumeric } from '../form-validators';
 
 
@@ -13,13 +13,27 @@ import { formValidator, formValidatorIsNumeric } from '../form-validators';
 })
 export class ProductAdditionFormComponent implements OnInit {
 
+
+  category: any = ['Electronics', 'Clothes', 'Household', 'Games', 'Books', 'Industrial', 'Other'];
+
   @Output() newFormEvent = new EventEmitter<FormGroup>();
 
-  product: Product;
+  @Input() product: Product;
   constructor( private productService : ProductService ) { }
 
   ngOnInit(): void {
     
+    if(this.product!= null){
+      //console.log("Product Name " + this.product.age);
+      this.productAdditionForm.get('name').setValue(this.product.name);
+      this.productAdditionForm.get('age').setValue(this.product.age);
+      this.productAdditionForm.get('desc').setValue(this.product.desc);
+      this.productAdditionForm.get('category').setValue(this.product.category);
+      this.productAdditionForm.get('duration').setValue(this.product.duration);
+      this.productAdditionForm.get('doa').setValue(this.product.doa);
+      this.productAdditionForm.get('price').setValue(this.product.price);
+      
+    }
   }
 
   productAdditionForm = new FormGroup({
@@ -51,6 +65,11 @@ export class ProductAdditionFormComponent implements OnInit {
 
   displayDataInConsole(data: any){
     console.log(data);
+  }
+
+
+  onChange(e: any){
+    this.productAdditionForm.get('category').setValue(e.target.value);
   }
 
 }

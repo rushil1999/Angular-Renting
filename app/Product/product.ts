@@ -6,7 +6,7 @@ export class Product {
     category: string;
     doa: string;
     duration: number;
-    available: boolean;
+    price: number;
 
     constructor(){
         

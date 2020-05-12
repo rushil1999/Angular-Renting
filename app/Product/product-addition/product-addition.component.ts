@@ -11,7 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductAdditionComponent implements OnInit {
 
   product: Product;
-  file: File
+  imageFiles: Array<File>;
 
   selector: number;
   constructor( private productService : ProductService ) { 
@@ -19,29 +19,42 @@ export class ProductAdditionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Start with product details form filling
     this.selector = 1;
   }
 
+  //Product-addition-form event collector
   getProductDetails( productAdditionForm: FormGroup ){
+    console.log("Product Received by parent");
     this.product = productAdditionForm.value;
-    console.log("Parent " + this.product.name);
+    console.log("Parent " + this.product.age);
     this.product.id=1;
     
+
+    //Opening Image Handler
     this.selector = 2;
 
   }
 
-  getImageFile( file: File){
-    this.file = file;
+  //Image-handler event collector
+  getImageFiles( files: Array<File>){
+    this.imageFiles = files;
+    console.log("received by parent");
+    this.uploadProductDetails();
 
   }
 
-
+  //Finally calling API to backend
   uploadProductDetails(){
 
-    this.productService.addNewProduct(this.file, this.product);
+    console.log("Ready to call API");
+    //this.productService.addNewProduct(this.files, this.product);
+    
 
+  }
 
+  redirectToProductForm(): void{
+    this.selector = 1;
   }
   
   

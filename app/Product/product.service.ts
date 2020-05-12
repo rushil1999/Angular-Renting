@@ -33,10 +33,10 @@ export class ProductService {
 
 
 
-  addNewProduct(file: File, product: Product): void{
+  addNewProduct(files: Array<File>, product: Product): void{
 
     this.addProduct(product).subscribe(data => { 
-      this.uploadImage(file, data).subscribe(data => {
+      this.uploadImages(files, data).subscribe(data => {
         this.displayImageUploadDataInConsole(data);
       } )});
 
@@ -58,11 +58,11 @@ export class ProductService {
   }
 
 
-  uploadImage(file: File, productId: number): Observable<any>{
+  uploadImages(files: Array<File>, productId: number): Observable<any>{
 
     this.url_upload = "http://localhost:8080/image/upload";
     const formData: FormData = new FormData();
-    formData.append('file', file);
+    formData.append('file', JSON.stringify(files));
     console.log("Into Image Service");
 
     const headers = {
