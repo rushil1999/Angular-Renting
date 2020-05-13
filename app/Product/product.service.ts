@@ -17,10 +17,18 @@ export class ProductService {
   constructor( private http: HttpClient ) {  
   }
 
-  getProductList(category: String){
+  getProductList(category: String): Observable<any>{
     this.url_list = "http://localhost:8080/products";
     this.url_list = this.url_list + "/" + category;
-    return this.http.get<Product[]>(this.url_list);
+
+    const headers = {
+      headers: new HttpHeaders({
+        "username": "rs1"
+      })
+    }
+
+
+    return this.http.get<Product[]>(this.url_list,headers);
   }
 
   getProductDetails(id: number){
@@ -45,6 +53,8 @@ export class ProductService {
   displayImageUploadDataInConsole(data: any){
     console.log(data);
   }
+
+
   addProduct(product: Product): Observable<any>{
     console.log("Service " + product.name);
     this.url_add = "http://localhost:8080/addProduct";

@@ -1,5 +1,5 @@
 
-<from [formGroup]="productAdditionForm" (ngSubmit)="addProduct()">
+<form [formGroup]="productAdditionForm" (ngSubmit)="addProduct()">
     <div>
         <p>Product Name</p>
         <input type="text" placeholder="Product name" formControlName="name" required>
@@ -54,4 +54,4 @@
 
     <br>
     <button type="submit" [disabled]="!productAdditionForm.valid" (click)=addProduct()>Proceed</button>
-</from>
+</form>

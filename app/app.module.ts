@@ -18,6 +18,10 @@ import { SignupComponent } from './User/signup/signup.component';
 import { ImageHandlerComponent } from './image-handler/image-handler.component';
 import { ProductAdditionComponent } from './Product/product-addition/product-addition.component';
 import { ProductAdditionFormComponent } from './Product/product-addition-form/product-addition-form.component';
+import { ProductUpdationComponent } from './Product/product-updation/product-updation.component';
+import { ProductUpdationFormComponent } from './Product/product-updation-form/product-updation-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material'
 
 
 
@@ -30,7 +34,12 @@ import { ProductAdditionFormComponent } from './Product/product-addition-form/pr
     DashboardComponent, 
     ProductDetailsComponent, 
     UserFormComponent, 
-    SignupComponent, ImageHandlerComponent, ProductAdditionComponent, ProductAdditionFormComponent
+    SignupComponent, 
+    ImageHandlerComponent, 
+    ProductAdditionComponent, 
+    ProductAdditionFormComponent, 
+    ProductUpdationComponent, 
+    ProductUpdationFormComponent
     
 
   ],
@@ -40,6 +49,7 @@ import { ProductAdditionFormComponent } from './Product/product-addition-form/pr
     ReactiveFormsModule, 
     FormsModule,
     HttpClientModule,
+    MaterialModule,
     RouterModule.forRoot([
       { path: '', component: AppComponent},
       { path: 'signUp', component: SignupComponent}, 
@@ -51,7 +61,8 @@ import { ProductAdditionFormComponent } from './Product/product-addition-form/pr
       { path: 'image', component: ImageHandlerComponent } 
     ],
     { onSameUrlNavigation: 'reload' },
-    )],
+    ),
+    BrowserAnimationsModule],
   bootstrap: [ AppComponent ], 
   
   providers : [

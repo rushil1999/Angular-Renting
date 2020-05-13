@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   arr: String[];
   selector: number;
 
+  user: boolean;
+
 
   category: String;
   id: number;
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.user = false;
   }
 
 
@@ -97,4 +100,9 @@ export class DashboardComponent implements OnInit {
     
   }
 
+
+
+  displayToggle(value: any){
+    console.log("Toogled: value = " + !this.user);
+  }
 }
