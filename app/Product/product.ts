@@ -8,6 +8,8 @@ export class Product {
     duration: number;
     price: number;
 
+    image: string;
+
     constructor(){
         
     }

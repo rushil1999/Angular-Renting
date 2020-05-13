@@ -8,13 +8,15 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  //Selecttion Attributes
   currentUrl: String;
   arr: String[];
   selector: number;
 
+  //User session Attributes
   user: boolean;
 
-
+  //Child Data Requirements attributes
   category: String;
   id: number;
 
@@ -33,33 +35,44 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.user = false;
+    //this.user = false;
   }
 
 
   selectDashboard(): void{
     this.currentUrl = this.route.url;
     this.arr = this.currentUrl.split("/",5);
+
+
+
     if(this.arr[2] == "products"){
+      //List
       this.selector = 1;
       console.log("DashBoard Selector: " + this.selector + " Catgory: " + this.arr[3]);
       this.category = this.arr[3];
     }
     else if(this.arr[2] == "product"){
+      //Details
       this.selector = 2;
       console.log("Dashboard Selector: " + this.selector);
+      this.id = Number(this.arr[3]);
     }
 
     else if(this.arr[2] == "addProduct"){
+      //Add Product
       this.selector = 3;
       console.log("Dashboard Selector: " + this.selector);
     }
+
+    else if(this.arr[2] == "updateProduct"){
+      //Update Product
+      this.selector = 4;
+      console.log("Dashboard Selector: " + this.selector);
+      this.id = Number(this.arr[3]);
+    }
   }
 
-  // updateProductListByCategory(category: String){
-  //   this.currentUrl = "/dashboard/products/" + category;
-  //   this.route.navigate([this.currentUrl]);
-  // }
+
 
 
   goToAddProduct(): void{
@@ -105,4 +118,15 @@ export class DashboardComponent implements OnInit {
   displayToggle(value: any){
     console.log("Toogled: value = " + !this.user);
   }
+
+
+
+
 }
+
+
+
+  // updateProductListByCategory(category: String){
+  //   this.currentUrl = "/dashboard/products/" + category;
+  //   this.route.navigate([this.currentUrl]);
+  // }

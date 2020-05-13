@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { Product } from '../product';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
@@ -14,7 +14,9 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product?: Product;
+  @Input() id: number;
+
+  product: Product;
 
   testProduct: Product;
 
@@ -25,7 +27,8 @@ export class ProductDetailsComponent implements OnInit {
   test: string;
 
 
-  constructor(private route: Router, 
+  constructor(
+    private route: Router, 
     private prodService: ProductService,
      ) {
       this.product = new Product();
@@ -41,19 +44,12 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Initialized ng function");
-    this.getProductDetails(this.getProductIdFromUrl());
+    //this.product = this.prodService.product;
+    this.getProductDetails(this.id);
     
     
   }
 
-  getProductIdFromUrl(): number{
-    let curl = this.route.url;
-    let arr = curl.split("/",5);
-    let prodId = Number(arr[3])
-    return prodId;
-
-
-  }
 
   getProductDetails(prodId: number): void{
 
@@ -82,7 +78,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  setProduct(data){
+  setProduct(data :any ){
     this.product = data;
     console.log("Data is " + this.product.id);
     // this.checkProductAvailability();
@@ -104,6 +100,13 @@ export class ProductDetailsComponent implements OnInit {
     let arr: Array<string> = doa.split('/',3);
     let productDate: Array<number> = [ Number(arr[0]), Number(arr[1]), Number(arr[2])];
     return productDate;
+  }
+
+
+
+  goToProductUpdation(): void{
+    this.prodService.product = this.product;
+    this.route.navigate(['/dashboard/updateProduct']);
   }
 
   

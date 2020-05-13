@@ -21,7 +21,8 @@ import { ProductAdditionFormComponent } from './Product/product-addition-form/pr
 import { ProductUpdationComponent } from './Product/product-updation/product-updation.component';
 import { ProductUpdationFormComponent } from './Product/product-updation-form/product-updation-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material'
+import { MaterialModule } from './material';
+import { ProductAdditionImageComponent } from './Product/product-addition-image/product-addition-image.component'
 
 
 
@@ -39,7 +40,8 @@ import { MaterialModule } from './material'
     ProductAdditionComponent, 
     ProductAdditionFormComponent, 
     ProductUpdationComponent, 
-    ProductUpdationFormComponent
+    ProductUpdationFormComponent, 
+    ProductAdditionImageComponent
     
 
   ],
@@ -56,7 +58,8 @@ import { MaterialModule } from './material'
       { path: 'login', component: LoginComponent }, 
       { path: 'dashboard/products/:category', component: DashboardComponent, runGuardsAndResolvers: 'always'},
       { path: 'dashboard/product/:id', component: DashboardComponent, runGuardsAndResolvers: 'always'},
-      { path: 'dashboard/addProduct', component: DashboardComponent, runGuardsAndResolvers: 'always'},
+      { path: 'dashboard/addProduct', component: DashboardComponent, runGuardsAndResolvers: 'always' },
+      { path: 'dashboard/updateProduct/:id', component: DashboardComponent, runGuardsAndResolvers: 'always' },
       { path: 'user', component: UserFormComponent},
       { path: 'image', component: ImageHandlerComponent } 
     ],

@@ -2,15 +2,23 @@
 
 
 <container-element [ngSwitch] = "selector">
-    <app-product-addition-form *ngSwitchCase= "1"  (newFormEvent) = "getProductDetails($event)"  
+    <app-product-addition-form *ngSwitchCase= "1"  
+    (newFormEvent) = "getProductDetailsFromChild($event)"  
     [product] = "product"></app-product-addition-form>
 
-    <app-image-handler  *ngSwitchCase= "2"  (fileUploadEvent) = "getImageFiles($event)" ></app-image-handler>
+    <app-product-addition-image *ngSwitchCase= "2" 
+    (imageEvent) = "getImageFilesFromChild($event)"
+    (backEvent) = "imageChildEventHandler($event)"
+    (finalConfirmation) = "uploadProduct($event)"
+    [file] = "file"></app-product-addition-image>
+
+    
 </container-element>
+<br><br>
+
+<h3>{{msg}}</h3>
 
 
-<br>
-<button [disabled] = "selector == 2 ? false : true"  (click) = "redirectToProductForm()">Back</button>
 
 
 

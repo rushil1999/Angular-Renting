@@ -24,23 +24,29 @@
 
 .leftbox { 
   float:left;  
-  border: 3px solid #73AD21;
+  border: 3px solid #ccffcc;
   width:180px; 
-  height:1000px; 
+  height: 5000px; 
+  margin: 15px;
 } 
 .middlebox{ 
   float:middle;  
   width:200px; 
   height:280px; 
-  text-align: justify;
+  margin: 15px;
 } 
 .rightbox{ 
   float:right;  
-  widows: 25%; 
-  height:280px; 
+  width: 200px;
+  height: 280px; 
   border: 3px solid #73AD21;
+  margin: 15px;
 }
 
+
+
+
+/* CSS for Switch */
 .switch {
   position: relative;
   display: inline-block;

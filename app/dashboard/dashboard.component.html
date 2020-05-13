@@ -10,8 +10,9 @@
 </div>
 <container-element  class = "middlebox" [ngSwitch]="selector">
     <app-product-list [category]="category" *ngSwitchCase="1"></app-product-list>
-    <app-product-details *ngSwitchCase="2"></app-product-details>
+    <app-product-details [id]="id" *ngSwitchCase="2"></app-product-details>
     <app-product-addition *ngSwitchCase="3"></app-product-addition>
+    <app-product-updation-form [id]="id" *ngSwitchCase="4"></app-product-updation-form>
 </container-element>
 
 
@@ -23,11 +24,10 @@
     <a (click)="goToAddProduct()">Add</a><br>
     <p>View Your Products</p>
     <label class="switch">
-        <input type="checkbox" name="checkbox"  (click) = "displayToggle($event.target.value)">
+        <input type="checkbox" [(ngModel)] = "user" name="checkbox"  (click) = "displayToggle($event.target.value)">
         <span class="slider round"></span>
     </label>
     <br>
-    
 </div>
 
 

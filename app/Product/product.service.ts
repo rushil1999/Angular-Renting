@@ -14,6 +14,9 @@ export class ProductService {
   url_upload : string;
   products: Product[];
 
+  //Shared content between product list , product detail and product updation
+  product: Product
+
   constructor( private http: HttpClient ) {  
   }
 
@@ -23,11 +26,11 @@ export class ProductService {
 
     const headers = {
       headers: new HttpHeaders({
-        "username": "rs1"
+        "username": "rs2"
       })
     }
 
-
+    console.log("About to fetch Product List");
     return this.http.get<Product[]>(this.url_list,headers);
   }
 
@@ -40,27 +43,13 @@ export class ProductService {
   }
 
 
-
-  addNewProduct(files: Array<File>, product: Product): void{
-
-    this.addProduct(product).subscribe(data => { 
-      this.uploadImages(files, data).subscribe(data => {
-        this.displayImageUploadDataInConsole(data);
-      } )});
-
-  }
-
-  displayImageUploadDataInConsole(data: any){
-    console.log(data);
-  }
-
-
+  //Sends only product to backend 
   addProduct(product: Product): Observable<any>{
     console.log("Service " + product.name);
     this.url_add = "http://localhost:8080/addProduct";
     const headers = {
       headers : new HttpHeaders({
-        "token": "rs1"
+        "token": "rs2"
       })
     }  
     console.log("About to fire post query on " + this.url_add);
@@ -68,18 +57,34 @@ export class ProductService {
   }
 
 
-  uploadImages(files: Array<File>, productId: number): Observable<any>{
-
-    this.url_upload = "http://localhost:8080/image/upload";
-    const formData: FormData = new FormData();
-    formData.append('file', JSON.stringify(files));
-    console.log("Into Image Service");
-
-    const headers = {
-      headers : new HttpHeaders({
-        "productId": String(productId)
-      })
-    } 
-    return this.http.post(this.url_upload, formData);
-   }
+  
 }
+
+
+
+
+// addNewProduct(files: Array<File>, product: Product): void{
+
+//   this.addProduct(product).subscribe(data => { 
+//     this.uploadImages(files, data).subscribe(data => {
+//       this.displayImageUploadDataInConsole(data);
+//     } )});
+
+// }
+
+
+
+// uploadImages(files: Array<File>, productId: number): Observable<any>{
+
+//   this.url_upload = "http://localhost:8080/image/upload";
+//   const formData: FormData = new FormData();
+//   formData.append('file', JSON.stringify(files));
+//   console.log("Into Image Service");
+
+//   const headers = {
+//     headers : new HttpHeaders({
+//       "productId": String(productId)
+//     })
+//   } 
+//   return this.http.post(this.url_upload, formData);
+//  }
