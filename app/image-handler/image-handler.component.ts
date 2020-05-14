@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ImageHandlerService } from './image-handler.service';
+import { ProductVisual } from '../Product/product-list/productVisual';
 
 @Component({
   selector: 'app-image-handler',
@@ -13,6 +14,8 @@ export class ImageHandlerComponent implements OnInit {
   images: FileList;
   files: Array<File>;
 
+  packets?: Array<ProductVisual>
+
   message: string;
   constructor(private imgService: ImageHandlerService) {
     
@@ -21,7 +24,17 @@ export class ImageHandlerComponent implements OnInit {
 
   ngOnInit(): void {
 
+      this.imgService.getImageListTest().subscribe( data => { this.assignData(data)})
   }
+
+  assignData(data: any){
+    this.packets = data;
+  }
+
+
+
+
+
 
   addToList( input: HTMLInputElement ){
     console.log("File Picked");

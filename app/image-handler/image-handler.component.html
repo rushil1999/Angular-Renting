@@ -1,4 +1,4 @@
-<h3>Upload file</h3>
+<!-- <h3>Upload file</h3>
 <form enctype="multipart/form-data" method="post">
   <div>
     <label for="picked">Choose file to upload</label>
@@ -16,11 +16,13 @@
 </div>
 
 <br>
-<button (click) = "sendToParentForUpload()">Confirm</button>
+<button (click) = "sendToParentForUpload()">Confirm</button> -->
 
+Image List Testing
+<br><br>
+<div *ngFor = "let packet of packets">
 
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
--->
+  <p>{{packet.product.name}}</p>
+  <img src = "http://localhost:8080/{{packet.image}}">
+
+</div>

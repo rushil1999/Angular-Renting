@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { delay } from 'rxjs/operators';
+import { ProductVisual } from '../product-list/productVisual';
 
 @Component({
   selector: 'app-product-updation',
@@ -16,7 +17,7 @@ export class ProductUpdationComponent implements OnInit {
 
   @Input() id: number;
 
-  product: Product;
+  productImage: ProductVisual;
 
   constructor( private productService : ProductService,
     private router: Router) { }
@@ -30,15 +31,15 @@ export class ProductUpdationComponent implements OnInit {
   }
 
   getProductDetails(id: number){
-    this.productService.getProductDetails(id).subscribe(data => {this.setProductData(data)})
+    this.productService.getProductDetailsWithImage(id).subscribe(data => {this.setProductData(data)})
   }
 
 
   setProductData(data: any){
-    this.product = data;
+    this.productImage = data;
     console.log("Parent Updation ");
     console.log(data );
-    this.productService.product = data;
+    this.productService.product = data.product;
   }
 
   updateProduct( product: Product ){

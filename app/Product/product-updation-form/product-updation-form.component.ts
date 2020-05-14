@@ -16,7 +16,7 @@ export class ProductUpdationFormComponent implements OnInit {
 
   @Input() id: number;
   
-  @Output() @Input() product?: Product;
+  @Output() product?: Product;
 
   category: any = ['Electronics', 'Clothes', 'Household', 'Games', 'Books', 'Industrial', 'Other'];
 

@@ -10,6 +10,8 @@ export class ImageHandlerService {
 
   uploadUrl: string = "http://localhost:8080/image/upload";
 
+  testURL: string = "http://localhost:8080/testing";
+
   constructor( private http: HttpClient ) { 
 
    }
@@ -31,7 +33,9 @@ export class ImageHandlerService {
     return this.http.post(this.uploadUrl, files, headers);
    }
    
-   
+   getImageListTest(): Observable<any>{
+    return this.http.get(this.testURL);
+   }
 
    
 

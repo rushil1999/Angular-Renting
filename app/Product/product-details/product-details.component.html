@@ -1,10 +1,10 @@
-<div *ngIf="product">
-   <h3>Name: {{ product.name }}</h3>
-    <p>Description: {{ product.desc }}</p>
-    <p>Age(In Months): {{ product.age }}</p>
-    <p>Category: {{ product.category }}</p>
-    <p>Date of availability: {{ product.doa }}</p>
-    <p>Duration: {{ product.duration }}</p>
+<div *ngIf="productImage">
+   <h3>Name: {{ productImage.product.name }}</h3>
+    <p>Description: {{ productImage.product.desc }}</p>
+    <p>Age(In Months): {{ productImage.product.age }}</p>
+    <p>Category: {{ productImage.product.category }}</p>
+    <p>Date of availability: {{ productImage.product.doa }}</p>
+    <p>Duration: {{ productImage.product.duration }}</p>
 </div>
 Message:
 {{ availabilityMessage }}
@@ -13,6 +13,6 @@ Message:
 
 
 <br><br><br>
-<img src = "http://localhost:8080/{{product.image}}" height = 200>
+<img src = "http://localhost:8080/{{productImage?.image}}" height = 200>
 
 <button (click) = "goToProductUpdation()">Update Product</button>

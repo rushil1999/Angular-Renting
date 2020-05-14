@@ -14,11 +14,10 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   @Input() category: String;
 
-  productImages: Array<ProductVisual>
+  packets: Array<ProductVisual>
 
   products: Array<Product>;
 
-  images: Array<String>;
 
   cUrl: string;
   arr: String[];
@@ -50,25 +49,19 @@ export class ProductListComponent implements OnInit, OnChanges {
   
 
   getProductList(): void {
-    this.prodService.getProductList(this.category).subscribe(data => { this.products = data});
+    this.prodService.getProductListWithImages(this.category).subscribe(data => { this.packets = data});
     //this.productImages = this.imageService.getImageListForProducts(this?.products);
 
     //console.log(this.products);
   }
 
 
-  cumulateData(): void{
-    let i: number;
-    for(i=0;i<this.products.length;i++){
-      this.productImages.push( new ProductVisual(this.products[i], this.images[i]));
-    }
-  }
 
   goToDetailsPage(product: Product){
 
     this.prodService.product = product;
     
-    this.router.navigate(['/dashboard/product',product.id]);
+    this.router.navigate(['/dashboard/product/',product.id]);
 
   }
 

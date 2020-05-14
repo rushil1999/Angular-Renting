@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { formatDate } from '@angular/common';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ProductVisual } from '../product-list/productVisual';
 
 
 
@@ -26,6 +27,8 @@ export class ProductDetailsComponent implements OnInit {
 
   test: string;
 
+  productImage: ProductVisual;
+
 
   constructor(
     private route: Router, 
@@ -45,13 +48,13 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log("Initialized ng function");
     //this.product = this.prodService.product;
-    this.getProductDetails(this.id);
+    this.getProductDetailsWithImage(this.id);
     
     
   }
 
 
-  getProductDetails(prodId: number): void{
+  getProductDetailsWithImage(prodId: number): void{
 
 
     // this.prodService.getProductDetails(prodId).subscribe((data: Product) => this.product = {
@@ -66,7 +69,7 @@ export class ProductDetailsComponent implements OnInit {
     // });
 
     
-    this.prodService.getProductDetails(prodId).subscribe((data: Product) => { this.setProduct(data) });
+    this.prodService.getProductDetailsWithImage(prodId).subscribe((data: ProductVisual) => { this.setProduct(data) });
       // this.product = data;
       // console.log(data['id']);
       // console.log(typeof(data['doa']));
@@ -79,8 +82,8 @@ export class ProductDetailsComponent implements OnInit {
 
 
   setProduct(data :any ){
-    this.product = data;
-    console.log("Data is " + this.product.id);
+    this.productImage = data;
+    console.log("Data is " + this.productImage.product.id);
     // this.checkProductAvailability();
     // this.checkProductExpiry();
   }
@@ -105,7 +108,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
   goToProductUpdation(): void{
-    this.prodService.product = this.product;
+    //this.prodService.product = this.product;
     this.route.navigate(['/dashboard/updateProduct', this.id]);
   }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product }from './product';
 import { Observable } from 'rxjs';
+import { ProductVisual } from '../Product/product-list/productVisual';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,30 @@ export class ProductService {
     return this.http.get<Product[]>(this.url_list,headers);
   }
 
-  getProductDetails(id: number){
+  getProductListWithImages(category: String): Observable<any>{
+    this.url_list = "http://localhost:8080/productImgs";
+    this.url_list = this.url_list + "/" + category;
+
+    const headers = {
+      headers: new HttpHeaders({
+        "username": "rs2"
+      })
+    }
+
+    console.log("About to fetch Product List");
+    return this.http.get<ProductVisual[]>(this.url_list,headers);
+  }
+
+
+  getProductDetailsWithImage(id: number): Observable<any>{
+    this.url_details = "http://localhost:8080/productImg";
+    this.url_details = this.url_details + "/" + id;
+    console.log(this.url_details);
+    //this.http.get<Product>(this.url_details).subscribe((data) => {console.log(data) })
+    return this.http.get<ProductVisual>(this.url_details);
+  }
+
+  getProductDetails(id: number): Observable<any>{
     this.url_details = "http://localhost:8080/product";
     this.url_details = this.url_details + "/" + id;
     console.log(this.url_details);
