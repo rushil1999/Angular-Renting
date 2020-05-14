@@ -106,7 +106,7 @@ export class ProductDetailsComponent implements OnInit {
 
   goToProductUpdation(): void{
     this.prodService.product = this.product;
-    this.route.navigate(['/dashboard/updateProduct']);
+    this.route.navigate(['/dashboard/updateProduct', this.id]);
   }
 
   

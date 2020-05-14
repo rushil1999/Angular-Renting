@@ -12,6 +12,7 @@ export class ProductService {
   url_details : string;
   url_add : string;
   url_upload : string;
+  url_update: string;
   products: Product[];
 
   //Shared content between product list , product detail and product updation
@@ -57,6 +58,10 @@ export class ProductService {
   }
 
 
+  updateProduct( product: Product ): Observable<any>{
+    this.url_update = "http://localhost:8080/updateProduct";
+    return this.http.put(this.url_update, product);
+  }
   
 }
 

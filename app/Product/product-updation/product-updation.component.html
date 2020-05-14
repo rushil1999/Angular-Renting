@@ -1,1 +1,7 @@
-<p>product-updation works!</p>
+<container-element [ngSwitch] = "selector">
+
+    <app-product-updation-form *ngSwitchCase = "1" [product] = "product"
+    (updateProductEvent) = "updateProduct($event)"></app-product-updation-form>
+
+</container-element>
+
