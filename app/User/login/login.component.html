@@ -1,17 +1,30 @@
-<from [formGroup]="loginForm" (ngSubmit)="login()">
-    <div>
-        <p>User Name</p>
-        <input type="text" placeholder="User name" formControlName="credential" required>
-    </div>
-
-    <div>
-        <p>Password</p>
-        <input type="text" placeholder="Password" formControlName="password" required>
-    </div>
-    <br>
-    <button type="submit" [disabled]="!loginForm.valid" (click)=login()>Login</button>
-</from>
-
-
+<div class = "middlebox">
+    <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <form [formGroup]="loginForm" >
+            <mat-form-field>
+                <mat-label>Credentials</mat-label>
+                <input matInput placeholder = "Username/Email" formControlName = "credentials">
+                <mat-error *ngIf = "loginForm.get('credentials').errors?.maxlength &&
+                (loginForm.get('credentials').dirty || loginForm.get('credentials').touched )">
+                    Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type = "password" placeholder = "Password" formControlName = "password">
+                <mat-error *ngIf = "loginForm.get('password').errors?.maxlength &&
+                (loginForm.get('password').dirty || loginForm.get('password').touched )">
+                Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color = "primary" type="submit" [disabled]="!loginForm.valid" (click)=login()>Login</button>
+            <br>
+            <mat-dialog-content>{{msg}}</mat-dialog-content>
+        </form>
+    </mat-card>
+</div>
 
 

@@ -1,14 +1,21 @@
-<p>Products Page</p>
 
-<div *ngFor="let packet of packets">
-    <nav>
-        <!-- <a [routerLink]= "['/dashboard/product', product.id]" >{{ product.name }}</a> -->
-        <a (click) = "goToDetailsPage(packet.product)">{{packet.product.name}}</a>
-    </nav>
-    
-    <br>
+<mat-card class = "middlebox">
+    <mat-card-title>Products Page</mat-card-title>
+    <mat-nav-list *ngFor = "let packet of packets">
+        <mat-list-item (click) = "goToDetailsPage(packet.product)" >
+            {{packet.product.name}}
+        </mat-list-item>
 
-    <img src = "http://localhost:8080/{{packet.image}}" height = 200>
-     
-    
-</div>
+        <img src = "http://localhost:8080/{{packet.image}}" height = 200>
+    </mat-nav-list>
+</mat-card>
+
+
+<!-- <mat-card>
+    <mat-nav-list *ngFor = "let packet of packets">
+        <mat-nav-item (click) = "goToDetailsPage(packet.product)">
+            {{packet.product.name}}
+        </mat-nav-item>
+    </mat-nav-list>
+
+</mat-card> -->

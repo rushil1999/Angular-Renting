@@ -2,8 +2,9 @@ import { AbstractControl, FormControl, ValidatorFn } from "@angular/forms";
 
 export function formValidator(control: AbstractControl): { [key: string]: any} | null {
 
+    console.log("Inside Validaotr function");
     //console.log("Validator Function" + control.value + " " + control.value.length);
-    if(control.value.length > 20){
+    if(control.value.length > 5){
         return {"error" : true};
     }
     else{
@@ -21,6 +22,8 @@ export function formValidatorIsNumeric(control: AbstractControl): { [key: string
         
     }
 }
+
+
 
 export function updateDurationValidator(currentDuration: number ): ValidatorFn {
 

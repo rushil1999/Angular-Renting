@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   selector: number;
 
   //User session Attributes
-  user: boolean;
+  toggle: boolean;
+  currentUser: string;
 
   //Child Data Requirements attributes
   category: String;
@@ -35,7 +36,8 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    //this.user = false;
+    console.log("Initialized dashboard");
+    this.currentUser = localStorage.getItem("username");
   }
 
 
@@ -47,15 +49,22 @@ export class DashboardComponent implements OnInit {
 
     if(this.arr[2] == "products"){
       //List
-      this.selector = 1;
+      
       console.log("DashBoard Selector: " + this.selector + " Catgory: " + this.arr[3]);
       this.category = this.arr[3];
+      if(this.arr[4] == "u"){
+        this.toggle = true;
+      }
+      else{
+        this.toggle = false;
+      }
+      this.selector = 1;
     }
     else if(this.arr[2] == "product"){
       //Details
-      this.selector = 2;
       console.log("Dashboard Selector: " + this.selector);
       this.id = Number(this.arr[3]);
+      this.selector = 2;
     }
 
     else if(this.arr[2] == "addProduct"){
@@ -66,9 +75,9 @@ export class DashboardComponent implements OnInit {
 
     else if(this.arr[2] == "updateProduct"){
       //Update Product
-      this.selector = 4;
       console.log("Dashboard Selector: " + this.selector);
       this.id = Number(this.arr[3]);
+      this.selector = 4;
     }
   }
 
@@ -76,12 +85,18 @@ export class DashboardComponent implements OnInit {
 
 
   goToAddProduct(): void{
-    this.route.navigate(["/dashboard/addProduct"]);
+    if(localStorage.getItem("username") != null){
+      this.route.navigate(["/dashboard/addProduct"]);
+    }
+    else{
+      this.route.navigate(["/login"]);
+    }  
   }
 
   goToListByCategory( num : any ): void{
     console.log("Function called");
-    
+
+    let url: string;
     if(num == 1){
       //this.selector = 2;
       this.route.navigate(['/dashboard/products/', 'all']);
@@ -116,9 +131,25 @@ export class DashboardComponent implements OnInit {
 
 
   displayToggle(value: any){
-    console.log("Toogled: value = " + !this.user);
+    console.log("Toogled: value = " + !this.toggle);
+
+    let url: string;
+    if(!this.toggle){
+      url = "/dashboard/products/" + this.category + "/u";
+      this.route.navigate([url]);
+    }
+    else{
+      url = "/dashboard/products/" + this.category;
+      this.route.navigate([url]);
+    }
   }
 
+  logOut(){
+    //console.log("Rempving User name");
+    localStorage.removeItem("username");
+    //Should be changed to home page...
+    this.route.navigate(["dashboard/products/all"]);
+  }
 
 
 

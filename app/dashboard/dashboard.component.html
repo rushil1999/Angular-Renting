@@ -1,36 +1,46 @@
-<h1>RentForcement Dashboard</h1>
-<div class = "leftbox">
-    <a (click)="goToListByCategory(1)">All</a><br>
-    <a (click)="goToListByCategory(2)">Clothes</a><br>
-    <a (click)="goToListByCategory(3)">Electronics</a><br>
-    <a (click)="goToListByCategory(4)">Household</a><br>
-    <a (click)="goToListByCategory(5)">Games</a><br>
-    <a (click)="goToListByCategory(6)">Industrial</a><br>
-    <a (click)="goToListByCategory(7)">Other</a><br>    
-</div>
-<container-element  class = "middlebox" [ngSwitch]="selector">
-    <app-product-list [category]="category" *ngSwitchCase="1"></app-product-list>
-    <app-product-details [id]="id" *ngSwitchCase="2"></app-product-details>
-    <app-product-addition *ngSwitchCase="3"></app-product-addition>
-    <app-product-updation [id]="id" *ngSwitchCase="4"></app-product-updation>
-</container-element>
-
-
-
-
-
-<div class = "rightbox">
-    <!-- <button (click)="goToAddProduct()">Add Product</button> -->
-    <a (click)="goToAddProduct()">Add</a><br>
-    <p>View Your Products</p>
-    <label class="switch">
-        <input type="checkbox" [(ngModel)] = "user" name="checkbox"  (click) = "displayToggle($event.target.value)">
-        <span class="slider round"></span>
-    </label>
+<body>
+    <mat-toolbar>
+        <span>Dashboard</span>
+      </mat-toolbar>
     <br>
-</div>
+    <mat-card class = "leftbox">
+        <mat-card-title>Catgories</mat-card-title>
+        <mat-nav-list >
+            <mat-list-item (click)="goToListByCategory(1)">All</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(2)">Clothes</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(3)">Electronics</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(4)">Household</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(5)">Games</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(6)">Industrial</mat-list-item>
+            <mat-list-item (click)="goToListByCategory(7)">Other</mat-list-item> 
+        </mat-nav-list>
+    </mat-card>
+
+    <container-element  [ngSwitch]="selector">
+        <app-product-list [category]="category" [toggle] = "toggle" *ngSwitchCase="1"></app-product-list>
+        <app-product-details [id]="id" *ngSwitchCase="2"></app-product-details>
+        <app-product-addition *ngSwitchCase="3"></app-product-addition>
+        <app-product-updation [id]="id" *ngSwitchCase="4"></app-product-updation>
+    </container-element>
 
 
+
+
+    <mat-card class = "rightbox">
+        <mat-card-title>{{currentUser}}</mat-card-title>
+        <br>
+        <button mat-raised-button color = "accent" (click)="goToAddProduct()">Add</button>
+        <br>
+        <br>
+        <mat-slide-toggle [(ngModel)] = "toggle" (click) = "displayToggle($event.target.value)"> 
+            View Your Products
+        </mat-slide-toggle>
+        <br>
+        <br>
+        <button *ngIf = "currentUser" mat-raised-button color = "warn" (click)="logOut()">Log Out</button>
+    </mat-card>
+
+</body>
 <!-- <div class = "right">
     <a [routerLink] = "['/dashboard/addProduct/', 'all']">Add Product</a><br>
    

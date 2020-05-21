@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product }from './product';
 import { Observable } from 'rxjs';
-import { ProductVisual } from '../Product/product-list/productVisual';
+import { ProductVisual } from './productVisual';
 
 @Injectable({
   providedIn: 'root'
@@ -36,13 +36,21 @@ export class ProductService {
     return this.http.get<Product[]>(this.url_list,headers);
   }
 
-  getProductListWithImages(category: String): Observable<any>{
+  getProductListWithImages(category: String, toggle: boolean): Observable<any>{
     this.url_list = "http://localhost:8080/productImgs";
     this.url_list = this.url_list + "/" + category;
 
+    let currentUserName: string;
+    if(toggle){
+      currentUserName = localStorage.getItem("username");
+    }
+    else{
+      currentUserName = "@"
+    }
+
     const headers = {
       headers: new HttpHeaders({
-        "username": "rs2"
+        "username": currentUserName
       })
     }
 
@@ -74,7 +82,7 @@ export class ProductService {
     this.url_add = "http://localhost:8080/addProduct";
     const headers = {
       headers : new HttpHeaders({
-        "token": "rs2"
+        "token": localStorage.getItem("username")
       })
     }  
     console.log("About to fire post query on " + this.url_add);

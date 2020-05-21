@@ -3,7 +3,9 @@ import { ProductService } from '../product.service';
 import { Product } from '../product';
 import { Router } from '@angular/router';
 import { ImageService } from '../image.service';
-import { ProductVisual } from './productVisual';
+import { ProductVisual } from '../productVisual';
+import { User } from 'src/app/User/user';
+import { BlockScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +15,8 @@ import { ProductVisual } from './productVisual';
 export class ProductListComponent implements OnInit, OnChanges {
 
   @Input() category: String;
+
+  @Input() toggle: boolean;
 
   packets: Array<ProductVisual>
 
@@ -49,7 +53,7 @@ export class ProductListComponent implements OnInit, OnChanges {
   
 
   getProductList(): void {
-    this.prodService.getProductListWithImages(this.category).subscribe(data => { this.packets = data});
+    this.prodService.getProductListWithImages(this.category, this.toggle).subscribe(data => { this.packets = data});
     //this.productImages = this.imageService.getImageListForProducts(this?.products);
 
     //console.log(this.products);

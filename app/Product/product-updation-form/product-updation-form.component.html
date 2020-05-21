@@ -1,9 +1,9 @@
-
+<!-- 
 <form [formGroup]="productUpdationForm" >
     <div>
         <p>Product Name</p>
         <input type="text" placeholder="{{product.name}}" formControlName="name" required>
-        <!-- <small *ngIf="productUpdationForm.get('name').errors?.error">Character limit exceeded</small> -->
+        
         <small *ngIf="productUpdationForm.get('name').errors?.maxlength">Character limit exceeded</small>
     </div>
 
@@ -19,10 +19,7 @@
         <small *ngIf="productUpdationForm.get('desc').errors?.maxlength">Character limit exceeded</small>
     </div>
 
-    <!-- <div>
-        <p>Category</p>
-        <input type="text" placeholder="Category" formControlName="category" required>
-    </div> -->
+
     <br>
     <div>
         <p>Category</p>
@@ -32,10 +29,7 @@
         </select>
     </div>
 
-    <!-- <div>
-        <p>Date of Availability</p>
-        <input type="text" placeholder="Date of Availability" formControlName="doa" required>
-    </div> -->
+
 
     <div>
         <p>Duration</p>
@@ -50,11 +44,88 @@
         <p>Price</p>
         <input type="text" placeholder="{{product.price}}" formControlName="price" required>
         <small *ngIf="productUpdationForm.get('price').errors?.error">Should be numeric</small>
-        <!-- <small *ngIf="productUpdationForm.get('price').errors?.required">required</small> -->
     </div>
 
 
 
     <br>
     <button type="submit" [disabled]="!productUpdationForm.valid" (click)="updateProduct()">Update</button>
-</form>
+</form> -->
+
+<div class = "middlebox">
+    <mat-card>
+        <form [formGroup] = "productUpdationForm">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput type = "text" placeholder = "{{product?.name}}" formControlName = "name">
+                <mat-error *ngIf= "productUpdationForm.get('name').errors?.maxlength &&
+                (productUpdationForm.get('name').touched || productUpdationForm.get('name').dirty) ">
+                    "Character Limit exceeded"
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput type = "text" placeholder = "{{product?.age}}" formControlName = "age">
+                <mat-error *ngIf= "productUpdationForm.get('age').errors?.maxlength &&
+                (productUpdationForm.get('age').touched || productUpdationForm.get('age').dirty) ">
+                    "Character Limit exceeded"
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput type = "text" placeholder = "{{product?.desc}}" formControlName = "desc">
+                <mat-error *ngIf= "productUpdationForm.get('desc').errors?.maxlength &&
+                (productUpdationForm.get('desc').touched || productUpdationForm.get('desc').dirty) ">
+                    "Character Limit exceeded"
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let cat of category" [value]="cat">
+                        {{ cat }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Duration</mat-label>
+                <input matInput placeholder= "{{product?.duration}}" formControlName = "duration">
+                <mat-error *ngIf="productUpdationForm.get('duration').errors?.error &&
+                (productUpdationForm.get('duration').touched || productUpdationForm.get('duration').dirty)">
+                    Must Be Numeric 
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput placeholder= "{{product?.price}}" formControlName = "price">
+                
+                <mat-error *ngIf = "productUpdationForm.get('duration').errors?.durationError && 
+                (productUpdationForm.get('duration').touched || productUpdationForm.get('duration').dirty)">
+                    Cannot decrease the duration
+                </mat-error>
+                <mat-error *ngIf="productUpdationForm.get('price').errors?.error &&
+                (productUpdationForm.get('duration').touched || productUpdationForm.get('duration').dirty)">
+                    Must Be Numeric 
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-card-actions>
+                <button mat-raised-button color = "accent" [disabled]="!productUpdationForm.valid" (click)="updateProduct()">
+                    Update
+                </button>
+                <br>
+                <br>
+                <button mat-raised-button color = "accent"  (click)="goToDetailsPage()">
+                    Back
+                </button>
+            </mat-card-actions>
+
+            
+        </form>
+    </mat-card>
+</div>

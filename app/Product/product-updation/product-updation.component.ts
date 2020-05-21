@@ -3,7 +3,7 @@ import { Product } from '../product';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { delay } from 'rxjs/operators';
-import { ProductVisual } from '../product-list/productVisual';
+import { ProductVisual } from '../productVisual';
 
 @Component({
   selector: 'app-product-updation',

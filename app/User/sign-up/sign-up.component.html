@@ -1,37 +1,66 @@
-<h1 align="center"> Register Here </h1>
 
-
-    <div>
-        <p> First Name</p>
-        <input type="text" placeholder="Enter First Name" [(ngModel)]="fname">
-         <p *ngIf="fname.length > 10 ">Length excedded</p> 
-    </div>
-    <div>
-        <p> Last Name</p>
-        <input type="text" placeholder="Enter Last Name" [(ngModel)]="lname">
-    </div>
-
-
-    <div>
-        <p> Username</p>
-        <input type="text" placeholder="Enter Username" [(ngModel)]="username">
-    </div>
-    <div>
-        <p>Email ID</p>
-        <input type="text" placeholder="Enter Email ID" [(ngModel)]="emailaddr">
-    </div>
-    <div>
-        <p>Phone</p>
-        <input type="text" placeholder="Enter Phone Number" [(ngModel)]="phone">
-    </div>
-    <div>
-        <p> Password </p>
-        <input type="text" placeholder="Enter Password" [(ngModel)]="password">
-    </div>
-
-
-    <button [disabled]=validate() (click)="register()">Sign Up</button>
-
-{{msg}}
-
-<p class="message"> Already Registered? <a href="http://localhost:4200/login">Login</a></p>
+<div class = "middlebox">
+    
+    <mat-card >
+        <mat-card-title>Sign Up</mat-card-title>
+        <form [formGroup] = "signUpForm">
+            
+            <mat-form-field >
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder = "First Name"  formControlName = "fname">
+                <mat-error *ngIf = "signUpForm.get('fname').errors?.maxlength && 
+                (signUpForm.get('fname').dirty || signUpForm.get('fname').touched) ">
+                    Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder = "Last Name"  formControlName = "lname">
+                <mat-error *ngIf = "signUpForm.get('lname').errors?.maxlength && 
+                signUpForm.get('lname').touched">
+                    Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Email Address</mat-label>
+                <input matInput placeholder = "Email"  formControlName = "emailaddr">
+                <mat-error *ngIf = "signUpForm.get('emailaddr').errors?.email">
+                    Invalid Email
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>User Name</mat-label>
+                <input matInput placeholder = "User Name"  formControlName = "username">
+                <mat-error *ngIf = "signUpForm.get('username').errors?.maxlength && signUpForm.get('username').touched">
+                    Character limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder = "Phone No"  formControlName = "phone">
+                <mat-error *ngIf = "signUpForm.get('phone').errors?.maxlength && signUpForm.get('phone').touched">
+                    Character Limit Exceeded
+                </mat-error>
+                <mat-error *ngIf = "signUpForm.get('phone').errors?.error && signUpForm.get('phone').touched">
+                    Only digits allowed
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput  placeholder = "Password" type = "password" formControlName = "password">
+                <mat-error *ngIf = "signUpForm.get('password').errors?.maxlength && signUpForm.get('password').touched">
+                    Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="accent" [disabled] = "!signUpForm.valid" (click) = "fetchDetails()">Sign Up</button>
+            
+        </form>
+        <mat-dialog-content>{{message}}</mat-dialog-content>
+    </mat-card>
+</div>

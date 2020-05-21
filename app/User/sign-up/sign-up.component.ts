@@ -1,69 +1,66 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service'; 
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { formValidatorIsNumeric } from 'src/app/form-validators';
+import { UserService } from '../user.service';
 import { User } from '../user';
-
-
 
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'], 
-  providers: [ UserService ]
+  styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
 
-  value: String;
   user: User;
-  username: String;
-  fname: String;
-  lname: String;
-  emailaddr: String;
-  phone: String;
-  password: String;
 
-  msg: String;
+  signUpForm : FormGroup;
 
-  //Injecting user service 
-  constructor( private service: UserService ) { 
-    this.fname = "";
-    this.lname = "";
-    this.username = "";
-    this.emailaddr = "";
-    this.phone = "";
-    this.password = "";
-    this.msg = "";
-  }
+  message: string;
+
+  constructor( private userService: UserService ) { }
 
   ngOnInit(): void {
+    this.buildForm();
   }
 
-  register(){
-    console.log("Registering");
-    //this.user = new User(this.username, this.fname,this.lname, this.emailaddr, this.phone, this.password);
-    this.service.addUser(this.user).subscribe( data => {
-      console.log(data); 
-      this.msg = data;
+
+  buildForm(){
+    this.signUpForm = new FormGroup({
+      fname: new FormControl('', [ Validators.required, Validators.maxLength(10)]),
+      lname: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      emailaddr: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      phone: new FormControl('', [Validators.required, Validators.maxLength(10), formValidatorIsNumeric] ),
+      password: new FormControl('', [Validators.required, Validators.maxLength(10)])
     });
-
-  }
-
-  validate(): boolean{
-   // return this.service.validate(new User(this.username, this.fname,
-    //  this.lname, this.emailaddr, this.phone, this.password));
-    return true;
-  }
-
-  clearAllFields(): void{
-    this.fname = "";
-    this.lname = "";
-    this.username = "";
-    this.emailaddr = "";
-    this.phone = "";
-    this.password = "";
-    this.msg = "";
-  }
+    //this.signUpForm.valueChanges.subscribe(data => {console.log("hey")});
+    
+  }  
 
   
 
+  fetchDetails(){
+    console.log(this.signUpForm.value);
+    this.user = this.signUpForm.value;
+    this.userService.addUser(this.user).subscribe( data => {
+      this.message = data;
+      if(this.message == "User added"){
+        localStorage.setItem("username", this.user.username);
+      }
+    })
+    
+    
+
+    //this.signUpForm.get('name').dirty;
+    
+  }
+
+
+  
+
+
+    
 }
+
+

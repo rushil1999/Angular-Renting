@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { formatDate } from '@angular/common';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { ProductVisual } from '../product-list/productVisual';
+import { ProductVisual } from '../productVisual';
 
 
 

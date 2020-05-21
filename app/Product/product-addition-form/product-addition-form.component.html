@@ -1,9 +1,9 @@
-
+<!-- 
 <form [formGroup]="productAdditionForm" (ngSubmit)="addProduct()">
     <div>
         <p>Product Name</p>
         <input type="text" placeholder="Product name" formControlName="name" required>
-        <!-- <small *ngIf="productAdditionForm.get('name').errors?.error">Character limit exceeded</small> -->
+       
         <small *ngIf="productAdditionForm.get('name').errors?.maxlength">Character limit exceeded</small>
     </div>
 
@@ -19,10 +19,6 @@
         <small *ngIf="productAdditionForm.get('desc').errors?.maxlength">Character limit exceeded</small>
     </div>
 
-    <!-- <div>
-        <p>Category</p>
-        <input type="text" placeholder="Category" formControlName="category" required>
-    </div> -->
     <br>
     <div>
         <p>Category</p>
@@ -47,11 +43,84 @@
         <p>Price</p>
         <input type="text" placeholder="Price" formControlName="price" required>
         <small *ngIf="productAdditionForm.get('price').errors?.error">Should be numeric</small>
-        <!-- <small *ngIf="productAdditionForm.get('price').errors?.required">required</small> -->
+       
     </div>
 
 
 
     <br>
     <button type="submit" [disabled]="!productAdditionForm.valid" (click)=addProduct()>Proceed</button>
-</form>
+</form> -->
+<div class = "middlebox">
+    <mat-card>
+        <form [formGroup] = "productAdditionForm">
+            <mat-form-field>
+                <mat-label>Product Name</mat-label>
+                <input matInput placeholder="Product Name" formControlName = "name">
+                <mat-error *ngIf="productAdditionForm.get('name').errors?.maxlength">
+                    Character limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Age" formControlName = "age">
+                <mat-error *ngIf="productAdditionForm.get('age').errors?.error">
+                    Must Be Numeric
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Description" formControlName = "desc">
+                <mat-error *ngIf="productAdditionForm.get('desc').errors?.maxlength">
+                    Character Limit Exceeded
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let cat of category" [value]="cat">
+                        {{ cat }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input 
+                matInput 
+                [min]="minDate" 
+                [max]="maxDate" 
+                [matDatepicker]="picker"
+                (dateInput)="dateInput($event)"
+                formControlName="doa"
+                required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Duration</mat-label>
+                <input matInput placeholder="Duration" formControlName = "duration">
+                <mat-error *ngIf="productAdditionForm.get('duration').errors?.error">
+                    Must Be Numeric 
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput placeholder="Price" formControlName = "price">
+                <mat-error *ngIf="productAdditionForm.get('price').errors?.error">
+                    Must Be Numeric 
+                </mat-error>
+                
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color = "accent" [disabled]="!productAdditionForm.valid" (click)= "addProduct()">
+                Proceed
+            </button>
+        </form>
+    </mat-card>
+</div>

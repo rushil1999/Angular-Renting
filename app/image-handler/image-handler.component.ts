@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ImageHandlerService } from './image-handler.service';
-import { ProductVisual } from '../Product/product-list/productVisual';
+import { ProductVisual } from '../Product/productVisual';
 
 @Component({
   selector: 'app-image-handler',

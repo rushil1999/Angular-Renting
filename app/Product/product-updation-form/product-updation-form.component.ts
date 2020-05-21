@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { formValidatorIsNumeric, updateDurationValidator } from '../form-validators';
+import { formValidatorIsNumeric, updateDurationValidator } from '../../form-validators';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-updation-form',
@@ -20,7 +21,8 @@ export class ProductUpdationFormComponent implements OnInit {
 
   category: any = ['Electronics', 'Clothes', 'Household', 'Games', 'Books', 'Industrial', 'Other'];
 
-  constructor( private productService: ProductService ) { }
+  constructor( private productService: ProductService,
+      private router: Router ) { }
 
   ngOnInit(): void {
     this.product = this.productService.product;
@@ -83,4 +85,8 @@ export class ProductUpdationFormComponent implements OnInit {
     this.productUpdationForm.get('category').setValue(e.target.value);
   }
 
+  goToDetailsPage(){
+    console.log("Time to go back "+ this.product.id);
+    this.router.navigate(["/dashboard/product/",this.product.id]);
+  }
 }

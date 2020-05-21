@@ -3,7 +3,7 @@ import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventEmitter, Output, Input } from '@angular/core';
-import { formValidator, formValidatorIsNumeric } from '../form-validators';
+import { formValidator, formValidatorIsNumeric } from '../../form-validators';
 
 
 @Component({
@@ -16,6 +16,11 @@ export class ProductAdditionFormComponent implements OnInit {
 
   category: any = ['Electronics', 'Clothes', 'Household', 'Games', 'Books', 'Industrial', 'Other'];
 
+  startDate = new Date();
+  minDate = new Date();
+  maxDate = new Date(2020, 11, 31);
+  selectedDate: string;
+  
   @Output() newFormEvent = new EventEmitter<FormGroup>();
 
   @Input() product: Product;
@@ -67,6 +72,10 @@ export class ProductAdditionFormComponent implements OnInit {
     console.log(data);
   }
 
+  dateInput(event: any){
+    const temp: Date = event.value;
+    this.selectedDate = temp.toDateString();
+  }
 
   onChange(e: any){
     this.productAdditionForm.get('category').setValue(e.target.value);

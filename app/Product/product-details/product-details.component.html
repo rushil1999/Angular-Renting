@@ -1,18 +1,35 @@
-<div *ngIf="productImage">
+<div class = "middlebox">
+    <mat-card>
+        <mat-card-content>
+            <div *ngIf="productImage">
+                <mat-card-title>{{ productImage.product.name }}</mat-card-title>
+                 <p>Description: {{ productImage.product.desc }}</p>
+                 <p>Age(In Months): {{ productImage.product.age }}</p>
+                 <p>Category: {{ productImage.product.category }}</p>
+                 <p>Date of availability: {{ productImage.product.doa }}</p>
+                 <p>Duration: {{ productImage.product.duration }}</p>
+             </div>
+             <br>
+             <img src = "http://localhost:8080/{{productImage?.image}}" height = 200>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color = "accent" (click) = "goToProductUpdation()">
+                Update Product
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<!-- <div *ngIf="productImage">
    <h3>Name: {{ productImage.product.name }}</h3>
     <p>Description: {{ productImage.product.desc }}</p>
     <p>Age(In Months): {{ productImage.product.age }}</p>
     <p>Category: {{ productImage.product.category }}</p>
     <p>Date of availability: {{ productImage.product.doa }}</p>
     <p>Duration: {{ productImage.product.duration }}</p>
-</div>
-Message:
-{{ availabilityMessage }}
-<br>
-{{ expiryMessage }}
+</div> -->
 
 
-<br><br><br>
-<img src = "http://localhost:8080/{{productImage?.image}}" height = 200>
 
-<button (click) = "goToProductUpdation()">Update Product</button>
+
+

@@ -1,15 +1,18 @@
-<h1>Image Uploading</h1><br>
-<h4>Upload atleast one image</h4>
-<br>
-<input type='file' #inputImage (change)="fetchImage($event)">
+<div class = "middlebox">
+    <mat-card>
+        <mat-card-title>Image Uploading</mat-card-title><br>
+        
+        <br>
+        <input  type='file'  (change)="fetchImage($event)">
 
+        <br><br>
+        <button mat-raised-button color = "accent" (click) = "goBackToProductAddition()">Back</button>
+        <br><br>
+        <button mat-raised-button color = "accent" (click) = "executeUpload()">Confirm</button>
 
+        <br>
+        <br>
 
-<br><br>
-<button (click) = "goBackToProductAddition()">Back</button>
-<br><br>
-<button (click) = "executeUpload()">Confirm</button>
-
-
-
-<img  [src]="imageUrl" height="200"> 
+        <img [src]="imageUrl" height="300" width = "450"> 
+    </mat-card>
+</div>

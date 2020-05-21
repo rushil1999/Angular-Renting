@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { User } from './user';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
+
 import { catchError } from 'rxjs/operators';
 
 
@@ -11,14 +12,15 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
 
-  url = "http://localhost:8080/addUser";
+  url_add = "http://localhost:8080/addUser";
+  url_login = "http://localhost:8080/loginUser";
 
   //Injecting HttpClient dependency
-  constructor(private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   addUser(user: User) : Observable<any>{
     console.log("At your service" );
-    return this.http.post(this.url, user);
+    return this.http.post(this.url_add, user);
     
   }
 
@@ -26,22 +28,21 @@ export class UserService {
     return throwError(error.message || "Server Error");
   }
 
-  validate(user: User): boolean{
-    if(user.fname.length > 20 || user.lname.length > 20 || user.username.length > 20 ||
-      user.emailaddr.length > 50 || user.phone.length > 15 || user.password.length > 20){
-        return true;
-    }
-    else if(user.fname == null || user.lname == null || user.username.length == null ||
-      user.emailaddr.length == null || user.phone.length == null || user.password.length == null) {
-        return true;
-    }
-    else if(user.fname == "" || user.lname == "" || user.username == "" ||
-      user.emailaddr == "" || user.phone == "" || user.password == "") {
-        return true;
-    }
-    else{
-      return false;
-    }
+  login( list: Array<string> ): Observable<any>{
+
+    
+    const headers = {
+      params : {
+        "value": list
+      }
+    } 
+
+    return this.http.get<string>(this.url_login, headers)
+                    .pipe(catchError(this.errorHandler));
+
+  }
+  errorHandler(error: HttpErrorResponse){
+    return throwError(error.message || "Server Error");
   }
 
 }
